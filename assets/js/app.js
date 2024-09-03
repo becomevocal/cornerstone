@@ -1,6 +1,9 @@
 __webpack_public_path__ = window.__webpack_public_path__; // eslint-disable-line
 
 import Global from './theme/global';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import QuickSearch from './components/QuickSearch';
 
 const getAccount = () => import('./theme/account');
 const getLogin = () => import('./theme/auth');
@@ -92,6 +95,10 @@ window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null
                         imported.default.load(context);
                     });
                 });
+
+                // Render React components
+                // console.log('context',context)
+                ReactDOM.render(<QuickSearch urls={context.urls} lang={JSON.parse(context.searchLang)} name="nav-quick-search" />, document.querySelector('#quick-search-react'));
             });
         },
     };
